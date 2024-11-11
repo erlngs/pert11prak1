@@ -10,21 +10,24 @@ class PlanScreen extends StatefulWidget {
 
 class _PlanScreenState extends State<PlanScreen> {
   Plan plan = const Plan();
-  late ScrollController scrollController; // Langkah 10: Deklarasi ScrollController
+  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
     scrollController = ScrollController()
       ..addListener(() {
-        FocusScope.of(context).requestFocus(FocusNode()); // Langkah 11: Tambah Scroll Listener
+        FocusScope.of(context).requestFocus(FocusNode());
       });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Master Plan Namaku')),
+      appBar: AppBar(
+        title: const Text('Master Plan Erlang'),
+        backgroundColor: Colors.blue,
+      ),
       body: _buildList(),
       floatingActionButton: _buildAddTaskButton(),
     );
@@ -46,7 +49,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   Widget _buildList() {
     return ListView.builder(
-      controller: scrollController, // Langkah 12: Tambah ScrollController ke ListView
+      controller: scrollController,
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       itemCount: plan.tasks.length,
       itemBuilder: (context, index) => _buildTaskTile(plan.tasks[index], index),
@@ -90,7 +93,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   void dispose() {
-    scrollController.dispose(); // Langkah 13: Bersihkan ScrollController
+    scrollController.dispose();
     super.dispose();
   }
 }
